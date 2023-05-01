@@ -23,7 +23,22 @@ const showTask = (data) => {
     data.forEach(item => {
         const li = document.createElement("li");
         li.textContent = `${item.title}`;
-        myUL.appendChild(li);
+        const container = document.createElement("div");
+        container.className = "container";
+        const btn = document.createElement("button");
+        btn.className = "btn";
+        btn.textContent = "delete";
 
+        container.appendChild(li);
+        container.appendChild(btn);
+        myUL.appendChild(container);
+
+        btn.addEventListener('click', () => {
+            console.log(item._id)
+            fetch(`/task/${item._id}`, {
+                method: 'DELETE',
+            })
+            location.reload();
+        })
     });
 }

@@ -26,5 +26,11 @@ const showTask = (req, res) => {
         .then(tasks => res.send(tasks))
         .catch(err => res.status(500).send(err.message));
 }
+const deleteTask = (req, res) => {
+    const _id = req.params;
+    console.log(_id);
+    Task.deleteOne({ _id: req.params })
+        .then(tasks => res.send(tasks))
+}
 
-module.exports = { addTask, showTask };
+module.exports = { addTask, showTask, deleteTask };
