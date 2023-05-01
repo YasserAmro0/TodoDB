@@ -4,6 +4,7 @@ const { Schema } = mongoose;
 
 const TaskSchema = new Schema({
     title: String,
+    required: true
 });
 const Task = mongoose.model('Task', TaskSchema);
 
