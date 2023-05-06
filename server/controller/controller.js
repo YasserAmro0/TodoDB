@@ -1,10 +1,10 @@
 
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 const { Schema } = mongoose;
 
 const TaskSchema = new Schema({
     title: String,
-    required: true
+    // required: true
 });
 const Task = mongoose.model('Task', TaskSchema);
 
@@ -17,7 +17,7 @@ const addTask = (req, res) => {
     });
 
     task.save()
-        .then(() => console.log('task created'))
+        .then(() => res.json('task created'))
         .catch(err => console.error('Could not create Task', err));
 
 }
@@ -29,9 +29,8 @@ const showTask = (req, res) => {
 }
 const deleteTask = (req, res) => {
     const _id = req.params;
-    console.log(_id);
     Task.deleteOne({ _id: req.params })
         .then(tasks => res.send(tasks))
 }
 
-module.exports = { addTask, showTask, deleteTask };
+export { addTask, showTask, deleteTask };
